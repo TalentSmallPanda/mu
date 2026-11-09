@@ -2,12 +2,11 @@
 
 All notable user-facing changes to Wu are listed here, newest first.
 
-## Unreleased
+## 1.2.1 - 2026-11-09
 
-- Fix links and text selection in tables rendered in agent chat.
-- Allow multiple tabs inside the agent chat side panel.
-- Reduce quoted text bar's width.
-- Close images in agent chat on background click.
+- Double-click to confirm items in the LSP locations picker.
+- Show the full file with complete navigation in the Git diff view.
+- Update the app icon.
 
 ## 1.2.0 - 2026-11-08
 
