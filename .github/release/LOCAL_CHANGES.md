@@ -4,6 +4,39 @@
 
 ---
 
+## 1.2.2 - 2026-11-11
+
+### 功能改动
+
+- **状态栏新增 Git 分支状态显示**
+  - 新增 `GitBranchStatus` 状态栏项
+  - 显示当前分支及远程同步按钮（Fetch/Push/Pull）
+  - 订阅 `GitStore` 事件，状态变化时自动刷新
+
+### 修改的文件
+
+#### 代码文件
+
+- `crates/git_ui/src/git_branch_status.rs`（新增）
+  - 新增 `GitBranchStatus` 状态栏项
+  - 订阅 `GitStoreEvent`（状态变化、HEAD 变化、仓库增删、活动仓库变化）
+  - 渲染 `GitPanel::render_remote_button` 显示远程同步按钮
+
+- `crates/git_ui/src/git_panel.rs`
+  - `render_remote_button` 签名从 `&mut Context<Self>` 改为 `&App`（只读）
+  - 更新 `PanelRepoFooter` 中的调用点从 `update` 改为 `read`
+
+- `crates/git_ui/src/diff_multibuffer.rs`
+  - `render_remote_button` 调用从 `update` 改为 `read`
+
+- `crates/git_ui/src/git_ui.rs`
+  - 导出 `git_branch_status` 模块和 `GitBranchStatus` 类型
+
+- `crates/wu/src/wu.rs`
+  - 在状态栏左侧添加 `GitBranchStatus` 项
+
+---
+
 ## 1.2.1 - 2026-11-09
 
 ### 功能改动
@@ -63,3 +96,4 @@
 | 上游版本 | 本地版本 | 日期 |
 |---------|---------|------|
 | 1.2.0 | 1.2.1 | 2026-11-09 |
+| 1.2.1 | 1.2.2 | 2026-11-11 |
