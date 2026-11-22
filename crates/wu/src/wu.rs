@@ -499,11 +499,17 @@ pub fn initialize_workspace(app_state: Arc<AppState>, cx: &mut App) {
         let line_ending_indicator =
             cx.new(|_| line_ending_selector::LineEndingIndicator::default());
         let git_blame_status = cx.new(|_| git_ui::GitBlameStatus::default());
+        let workspace_entity = cx.entity();
+        let git_store = workspace.project().read(cx).git_store().clone();
+        let git_branch_status = cx.new(|cx| {
+            git_ui::GitBranchStatus::new(&workspace_entity, &git_store, window, cx)
+        });
         workspace.status_bar().update(cx, |status_bar, cx| {
             status_bar.add_left_item(lsp_button, window, cx);
             status_bar.add_left_item(diagnostic_summary, window, cx);
             status_bar.add_left_item(active_file_name, window, cx);
             status_bar.add_left_item(git_blame_status, window, cx);
+            status_bar.add_left_item(git_branch_status, window, cx);
             status_bar.add_left_item(activity_indicator, window, cx);
             status_bar.add_right_item(active_buffer_encoding, window, cx);
             status_bar.add_right_item(active_buffer_language, window, cx);

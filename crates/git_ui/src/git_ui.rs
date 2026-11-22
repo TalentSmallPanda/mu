@@ -47,6 +47,7 @@ pub mod commit_tooltip;
 pub mod commit_view;
 mod conflict_view;
 mod diff_multibuffer;
+pub mod git_branch_status;
 pub mod git_graph;
 pub mod git_panel;
 mod git_panel_settings;
@@ -65,6 +66,7 @@ pub mod text_diff_view;
 pub mod unstaged_diff;
 
 pub use blame_ui::GitBlameStatus;
+pub use git_branch_status::GitBranchStatus;
 
 const WINDOW_ACTIVATION_RESCAN_COOLDOWN: std::time::Duration = std::time::Duration::from_secs(5);
 
