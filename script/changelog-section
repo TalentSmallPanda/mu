@@ -16,7 +16,7 @@ section=$(awk -v version="$version" '
     next
   }
   found { print }
-' .github/release/CHANGELOG.md)
+' .github/release/LOCAL_CHANGES.md)
 
 section=$(printf '%s\n' "$section" | sed -e '/./,$!d' | sed -e :a -e '/^\n*$/{$d;N;ba' -e '}')
 
